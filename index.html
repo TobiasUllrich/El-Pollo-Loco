@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+    <!-- KOPFBEREICH STANDARD-->
+    <meta charset='UTF-8'>  <!-- UTF-8 ist Standard, Alternativen: "ASCII" oder "ISO-8859-15" --> 
+    <meta http-equiv="X-UA-Compatible" content='IE=edge'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Sorgt für Barrierefreiheit -->
+ 
+    <title>El Pollo Loco</title>
+
+    <link href="img/2_character_pepe/3_jump/J-31.png" type="image/x-icon" rel="icon" />  <!-- Bindet FavIcon ein-->
+    <link rel="stylesheet" type='text/css' media='screen' href="style.css"> <!-- Statt <style> ... </style> -->
+
+    <script src="./models/keyboard.class.js"></script> <!-- Statt <script> ... </script> -->
+    <script src="./models/world.class.js"></script> <!-- Statt <script> ... </script> -->
+    <script src="./models/drawable-object.class.js"></script> <!-- Statt <script> ... </script> -->
+    <script src="./models/status-bar.class.js"></script> <!-- Statt <script> ... </script> -->
+    <script src="./models/movable-object.class.js"></script> <!-- Statt <script> ... </script> -->
+    <script src="./models/throwable-object.class.js"></script> <!-- Statt <script> ... </script> -->
+    <script src="./models/chicken.class.js"></script> <!-- Statt <script> ... </script> -->
+    <script src="./models/chickensmall.class.js"></script> <!-- Statt <script> ... </script> -->
+    <script src="./models/character.class.js"></script> <!-- Statt <script> ... </script> -->
+    <script src="./models/coin.class.js"></script> <!-- Statt <script> ... </script> -->
+    <script src="./models/background-object.class.js"></script> <!-- Statt <script> ... </script> -->
+    <script src="./models/cloud.class.js"></script> <!-- Statt <script> ... </script> -->
+    
+    <script src="./models/level.class.js"></script> <!-- Statt <script> ... </script> -->
+    <script src="./models/endboss.class.js"></script> <!-- Statt <script> ... </script> -->
+    <script src="./levels/level1.js"></script> <!-- Statt <script> ... </script> -->
+    <script src="./js/game.js"></script> <!-- Statt <script> ... </script> -->
+    <!-- KOPFBEREICH STANDARD-->
+
+</head>
+
+
+<!--Sobald der body-Bereich geladen wurde, wird das Java-Script ausgeführt-->
+<body id="body">
+
+<!-- Pop-Up-Background -->  
+<div id="howtoplay-bg" class="howtoplay-bg d-none"></div>  
+
+<!-- Headline -->   
+<h1 id="title">El Pollo Loco</h1>
+
+<!-- Div für den Full-Screen --> 
+<div id="fullscreen">
+  
+  <!-- Pop-Up -->   
+    <div id="howtoplay" class="d-none">
+      <img id="exit" src="img\x-mark-24.png" onclick="closeHowToPlayPopUp()">
+      <h2>How to play</h2>
+      <div><img class="icons-howtoplay" src="img\cursor-right.png"><h3><span>Move right</span></h3></div>
+      <div><img class="icons-howtoplay" src="img\cursor-left.png"><h3><span>Move left</span></h3></div>
+      <div><img class="icons-howtoplay" src="img\d.png"><h3><span>Throw Bottle</span></h3><img class="icons-howtoplay2" src="img\7_statusbars\3_icons\icon_salsa_bottle.png"></div>
+      <div><img class="icons-howtoplay" src="img\f.png"><h3><span>Transforms Coins to Bottles</span></h3><img class="icons-howtoplay2" src="img\7_statusbars\3_icons\icon_coin.png"><h3>-></h3><img class="icons-howtoplay2" src="img\7_statusbars\3_icons\icon_salsa_bottle.png"></div>
+      <div><img class="icons-howtoplay" src="img\g.png"><h3><span>Transforms Coins to Health</span></h3><img class="icons-howtoplay2" src="img\7_statusbars\3_icons\icon_coin.png"><h3>-></h3><img class="icons-howtoplay2" src="img\7_statusbars\3_icons\icon_health.png"></div>
+      <div><img class="icons-howtoplay" src="img\spacebar.png" id="howtoplay-spacebar"><h3><span>Jump</span></h3><img class="icons-howtoplay2" src="img\2_character_pepe\3_jump\J-36.png"></div>
+    </div>
+
+
+<!-- Button-Bar-Left: FLEX --> 
+<div id="button-bar-left" class="button-bar-left-right">
+    <div id="button-box1">
+      <span class="description-flex">Jump</span>
+      <button id="spacebar" class="design-btn" onmousedown="simulateKeyPressed(32,'keydown')" onmouseup="simulateKeyPressed(32,'keyup')" ontouchstart="simulateKeyPressed(32,'keydown')" ontouchend="simulateKeyPressed(32,'keyup')"></button>
+    </div>    
+    <div id="button-box2">
+      <span class="description-flex">Move Left</span>
+      <button id="left" class="design-btn" onmousedown="simulateKeyPressed(37,'keydown')" onmouseup="simulateKeyPressed(37,'keyup')" ontouchstart="simulateKeyPressed(37,'keydown')" ontouchend="simulateKeyPressed(37,'keyup')"></button>  
+    </div>       
+</div>
+
+<!-- Game-Screen --> 
+<canvas id="canvas" class="d-none" width="720" height="480"></canvas>
+
+<!-- Start-Screen --> 
+<div id="startscreen">
+  <button class="btn-design" onclick="startGame()">Start Game</button>
+  <button class="btn-design" onclick="openHowToPlayPopUp()">How to play</button>
+</div>
+
+<!-- End-Screen --> 
+<div id="endscreen" class="d-none">
+  <button class="btn-design" onclick="restartGame()">Re-Start Game</button>
+  <button class="btn-design" onclick="showStartscreen()">Main Menu</button>
+</div>
+
+ <!-- Button-Bar: ABSOLUTE --> 
+  <div id="button-bar" class="button-bar">
+    <img id="sound-img" src="img/volume-32.png" alt="" onclick="muteOrActivateSound()">
+    <img id="fullscreen-img" src="img/fullscreen-32.png" alt="" onclick="enterOrexitFullscreen()">
+  </div>
+
+   <!-- Rotate-Info: ABSOLUTE --> 
+   <div id="rotate-info" class="rotate-info">
+    <span>Please rotate your mobile-device!</span>
+  </div>
+
+  <!-- Button-Bar-Right: FLEX --> 
+  <div id="button-bar-right" class="button-bar-left-right">
+    <div id="button-box3">
+      <span class="description-flex"><img class="description-short" src="img\7_statusbars\3_icons\icon_coin.png"><b>-></b><img class="description-short" src="img\7_statusbars\3_icons\icon_health.png"></span>
+      <button id="g-btn" class="design-btn" onmousedown="simulateKeyPressed(71,'keydown')" onmouseup="simulateKeyPressed(71,'keyup')" ontouchstart="simulateKeyPressed(71,'keydown')" ontouchend="simulateKeyPressed(71,'keyup')"></button>
+    </div>    
+    <div id="button-box4">
+      <span class="description-flex"><img class="description-short" src="img\7_statusbars\3_icons\icon_coin.png"><b>-></b><img class="description-short" src="img\7_statusbars\3_icons\icon_salsa_bottle.png"></span>
+      <button id="f-btn" class="design-btn" onmousedown="simulateKeyPressed(70,'keydown')" onmouseup="simulateKeyPressed(70,'keyup')" ontouchstart="simulateKeyPressed(70,'keydown')" ontouchend="simulateKeyPressed(70,'keyup')"></button>
+    </div> 
+    <div id="button-box5">
+      <span class="description-flex"><img class="description-short" src="img\7_statusbars\3_icons\icon_salsa_bottle.png"></span>
+      <button id="d-btn" class="design-btn" onmousedown="simulateKeyPressed(68,'keydown')" onmouseup="simulateKeyPressed(68,'keyup')" ontouchstart="simulateKeyPressed(68,'keydown')" ontouchend="simulateKeyPressed(68,'keyup')"></button>
+    </div> 
+    <div id="button-box6">
+      <span class="description-flex">Move Right</span>
+      <button id="right" class="design-btn" onmousedown="simulateKeyPressed(39,'keydown')" onmouseup="simulateKeyPressed(39,'keyup')" ontouchstart="simulateKeyPressed(39,'keydown')" ontouchend="simulateKeyPressed(39,'keyup')"></button>
+    </div>    
+  </div>
+
+</div>
+
+
+</body>
+</html>

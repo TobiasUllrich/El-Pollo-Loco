@@ -1,0 +1,1394 @@
+html {
+    scroll-behavior: smooth;
+}
+
+@font-face {
+    font-family: 'Zabars';
+    src: url('fonts/Zabars.ttf') format('truetype');
+    /* ttf-Datei einbinden: Frei wählbarer Name */
+}
+
+body {
+    margin: 0px;
+    /* Browser-Standard rückgängig machen: Äußerer Abstand */
+    font-family: 'Zabars', 'Arial', 'Helvetica', 'sans-serif';
+    /* Schriftart für den ganzen Body-Bereich festlegen + Ausweich-Schriftarten */
+    overflow-x: hidden;
+    /* Standard: Was auf der X-Achse aus dem Body/Tag rausläuft wird nicht mehr gezeigt */
+    /* muss dem Body gegeben werden, ABER funktioniert nicht auf dem Handy -> Lösung: Alles in eine <div> was in <body> ist und diesem <div> das overflow-Attribut geben */
+    overflow-y: hidden;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url('img/desert2.png');
+    background-position: center;
+}
+
+/* Headline */
+h1 {
+    font-size: 63px;
+    letter-spacing: 3px;
+    text-shadow: 4px 2px 8px rgba(0, 0, 0, 0.5);
+    margin: 0px;
+    width: 720px;
+    text-align: center;
+}
+/* Headline */
+
+/* Fullscreen */
+#fullscreen {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#canvas {
+    background-color: black;
+    display: block;
+}
+/* Fullscreen */
+
+/* Button-Bar centered on top & inside of the canvas */
+.button-bar {
+    position: absolute;
+    top: 0px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+#sound-img {
+    display: flex;
+    cursor: pointer;
+    padding: 5px;
+}
+
+#fullscreen-img {
+    display: flex;
+    cursor: pointer;
+    padding: 5px;
+}
+/* Button-Bar centered on top & inside of the canvas */
+
+/* Button-Bar left & right to the canvas */
+#button-bar-left {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+#button-bar-right {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.button-bar-left-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 70px;
+    height: 480px;
+    background-color: sandybrown;
+}
+
+button {
+    margin: 5px;
+    background-color: sandybrown;
+}
+
+.design-btn {
+    height: calc(60px * (244/236));
+    width: 60px;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    border: none;
+}
+
+#spacebar {
+    margin: 0 !important;
+    height: calc(55px * (1600/244));
+    width: 55px !important;
+    background-image: url('img/spacebar-rotated.png');
+}
+
+#left {
+    margin: 0 !important;
+    height: calc(60px * (244/236));
+    width: 60px;
+    background-image: url('img/cursor-left.png');
+}
+
+#d-btn {
+    margin: 0 !important;
+    background-image: url('img/d.png');
+}
+
+#f-btn {
+    margin: 0 !important;
+    background-image: url('img/f.png');
+}
+
+#g-btn {
+    margin: 0 !important;
+    background-image: url('img/g.png');
+}
+
+#right {
+    margin: 0 !important;
+    background-image: url('img/cursor-right.png');
+}
+
+.description-short {
+    width: 23px;
+    height: 23px;
+}
+
+.description-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#button-box1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80%;
+}
+
+#button-box2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 20%;
+}
+
+#button-box3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 20%;
+}
+
+#button-box4 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 20%;
+}
+
+#button-box5 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 20%;
+}
+
+#button-box6 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 20%;
+}
+/* Button-Bar left & right to the canvas */
+
+/* Start- & Endscreen */
+#startscreen {
+    display: flex;
+    width: 720px;
+    height: 480px;
+    background-image: url('img/9_intro_outro_screens/start/startscreen_1.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-color: black;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-Index: 2;
+}
+
+#endscreen {
+    position: absolute;
+    width: 720px;
+    height: 480px;
+    background-image: url('img/9_intro_outro_screens/game_over/game over.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-Index: 2;
+}
+
+.btn-design {
+    font-size: 20px;
+    font-weight: 700;
+    z-Index: 1;
+    height: 60px;
+    width: 200px;
+    border-radius: 10px;
+    border: 4px solid transparent;
+    box-shadow: -5px -5px 30px 5px orange, 5px 5px 30px 5px yellow;
+}
+
+.btn-design:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: all 225ms ease-in-out;
+}
+
+.d-none {
+    display: none !important;
+}
+/* Start- & Endscreen */
+
+/* HowtoPlay */
+.howtoplay-bg {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    z-Index: 3;
+    background-color: black;
+    opacity: 0.5;
+}
+
+#howtoplay {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 400px;
+    height: 440px;
+    border-radius: 10px;
+    background-color: sandybrown;
+    z-Index: 3;
+}
+
+#howtoplay div {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding-left: 80px;
+}
+
+.icons-howtoplay {
+    height: 40px;
+    width: 35px;
+    padding-right: 10px;
+}
+
+.icons-howtoplay2 {
+    height: 40px;
+    width: 35px;
+    transform: translateY(-6px);
+}
+
+#howtoplay-spacebar {
+    width: 250px !important;
+}
+
+#exit {
+    position: absolute;
+    padding: 10px;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+}
+
+h2 {
+    font-size: 24px;
+}
+/* HowtoPlay */
+
+/* Rotate-Info */
+.rotate-info {
+    position: absolute;
+    top: 20px;
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    z-Index: 2;
+    font-size: 40px;
+    color: red;
+}
+/* Rotate-Info */
+
+
+/* Mobile: applied, when Browser-Window-width smaller or equal 720px + 2*70px */
+/* only: for older browsers; no effect on newer browsers */
+/* screen: Used for computer screens, tablets, smart-phones etc. */
+@media only screen and (max-width:860px) {
+
+    /* Headline */
+    h1 {
+        width: 100vw;
+        text-align: center;
+        font-size: 50px;
+    }
+    /* Headline */
+
+    /* Fullscreen */
+    #fullscreen {
+        height: calc((100vw - (2 * 70px)) * (480/720)); /* 480/720 say how much height is available per width */
+        width: 100%;
+    }
+
+    #canvas {
+        width: calc(100vw - (2 * 70px));
+    }
+    /* Fullscreen */
+
+    /* Button-Bar left & right to the canvas */
+    .button-bar-left-right {
+        width: 70px;
+        height: 100%;
+    }
+    /* Button-Bar left & right to the canvas */
+
+    /* Start- & Endscreen */
+    #startscreen {
+        height: calc((100vw - (2 * 70px)) * (480/720)); /* 480/720 say how much height is available per width */
+        width: calc(100vw - (2 * 70px));
+    }
+
+    #endscreen {
+        width: calc(100vw - (2 * 70px));
+        height: calc((100vw - (2 * 70px)) * (480/720)); /* 480/720 say how much height is available per width */
+    }
+    /* Start- & Endscreen */
+
+    /* Rotate-Info */
+    .rotate-info {
+        position: absolute;
+        top: 20px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        z-Index: 2;
+        font-size: 40px;
+        color: red;
+    }
+    /* Rotate-Info */
+}
+
+
+@media only screen and (max-width:750px) {
+
+    /* Headline */
+    h1 {
+        width: 100vw;
+        text-align: center;
+        font-size: 50px;
+    }
+    /* Headline */
+
+    /* Fullscreen */
+    #fullscreen {
+        height: calc((100vw - (2 * 60px)) * (480/720));
+        width: 100%;
+    }
+
+    #canvas {
+        width: calc(100vw - (2 * 60px));
+    }
+    /* Fullscreen */
+
+    /* Button-Bar centered on top & inside of the canvas */
+    #sound-img {
+        width: 15px;
+        padding: 2px;
+    }
+
+    #fullscreen-img {
+        width: 15px;
+        padding: 2px;
+    }
+    /* Button-Bar centered on top & inside of the canvas */
+
+    /* Button-Bar left & right to the canvas */
+    .button-bar-left-right {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        width: 60px;
+        height: 100%;
+        background-color: sandybrown;
+    }
+
+    .design-btn {
+        height: calc(50px * (244/236));
+        width: 50px;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        border: none;
+    }
+
+    #spacebar {
+        margin: 0 !important;
+        height: calc(50px * (1600/244));
+        width: 50px !important;
+        background-image: url('img/spacebar-rotated.png');
+    }
+
+    #left {
+        margin: 0 !important;
+        height: calc(50px * (244/236));
+        width: 50px;
+        background-image: url('img/cursor-left.png');
+    }
+    /* Button-Bar left & right to the canvas */
+
+
+    /* Start- & Endscreen */
+    #startscreen {
+        height: calc((100vw - (2 * 60px)) * (480/720)); /* 480/720 say how much height is available per width */
+        width: calc(100vw - (2 * 60px));
+    }
+
+    #endscreen {
+        width: calc(100vw - (2 * 59px)); /* 69px instead of 70px -> Buffer for inequal values of the canvas */
+        height: calc((100vw - (2 * 60px)) * (480/720)); /* 480/720 say how much height is available per width */
+    }
+
+    .btn-design {
+        font-size: 10px;
+        width: 100px;
+        height: 40px;
+    }
+    /* Start- & Endscreen */
+
+    /* HowtoPlay */
+    #howtoplay {
+        width: 280px;
+    }
+
+    #howtoplay div {
+        padding-left: 16px;
+    }
+
+    #howtoplay-spacebar {
+        width: 195px !important;
+    }
+    /* HowtoPlay */
+
+    /* Rotate-Info */
+    .rotate-info {
+        position: absolute;
+        top: 20px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        z-Index: 2;
+        font-size: 40px;
+        color: red;
+    }
+    /* Rotate-Info */
+}
+
+
+@media only screen and (max-width:660px) {
+
+    /* Headline */
+    h1 {
+        width: 100vw;
+        text-align: center;
+        font-size: 50px;
+    }
+    /* Headline */
+
+    /* Fullscreen */
+    #fullscreen {
+        height: calc((100vw - (2 * 60px)) * (480/720));
+        width: 100%;
+    }
+
+    #canvas {
+        width: calc(100vw - (2 * 60px));
+    }
+    /* Fullscreen */
+
+    /* Button-Bar centered on top & inside of the canvas */
+    #sound-img {
+        width: 15px;
+        padding: 2px;
+    }
+
+    #fullscreen-img {
+        width: 15px;
+        padding: 2px;
+    }
+    /* Button-Bar centered on top & inside of the canvas */
+
+    /* Button-Bar left & right to the canvas */
+    .button-bar-left-right {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        width: 60px;
+        height: 100%;
+        background-color: sandybrown;
+    }
+
+    .design-btn {
+        height: calc(40px * (244/236));
+        width: 40px;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        border: none;
+    }
+
+    #spacebar {
+        margin: 0 !important;
+        height: calc(40px * (1600/244));
+        width: 40px !important;
+        background-image: url('img/spacebar-rotated.png');
+    }
+
+    #left {
+        margin: 0 !important;
+        height: calc(40px * (244/236));
+        width: 40px;
+        background-image: url('img/cursor-left.png');
+    }
+    /* Button-Bar left & right to the canvas */
+
+    /* Start- & Endscreen */
+    #startscreen {
+        height: calc((100vw - (2 * 60px)) * (480/720)); /* 480/720 say how much height is available per width */
+        width: calc(100vw - (2 * 60px));
+    }
+
+    #endscreen {
+        width: calc(100vw - (2 * 59px)); /* 69px instead of 70px -> Buffer for inequal values of the canvas */
+        height: calc((100vw - (2 * 60px)) * (480/720)); /* 480/720 say how much height is available per width */
+    }
+
+    .btn-design {
+        font-size: 10px;
+        width: 100px;
+        height: 40px;
+    }
+    /* Start- & Endscreen */
+
+    /* HowtoPlay */
+    #howtoplay {
+        width: 280px;
+    }
+
+    #howtoplay div {
+        padding-left: 16px;
+    }
+
+    #howtoplay-spacebar {
+        width: 195px !important;
+    }
+    /* HowtoPlay */
+
+    /* Rotate-Info */
+    .rotate-info {
+        position: absolute;
+        top: 20px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        z-Index: 2;
+        font-size: 40px;
+        color: red;
+    }
+    /* Rotate-Info */
+}
+
+
+@media only screen and (max-width:600px) {
+
+    /* Headline */
+    h1 {
+        width: 100vw;
+        text-align: center;
+        font-size: 50px;
+    }
+    /* Headline */
+
+    /* Fullscreen */
+    #fullscreen {
+        height: calc((100vw - (2 * 60px)) * (480/720));
+        width: 100%;
+    }
+
+    #canvas {
+        width: calc(100vw - (2 * 60px));
+    }
+    /* Fullscreen */
+
+    /* Button-Bar centered on top & inside of the canvas */
+    #sound-img {
+        width: 15px;
+        padding: 2px;
+    }
+
+    #fullscreen-img {
+        width: 15px;
+        padding: 2px;
+    }
+    /* Button-Bar centered on top & inside of the canvas */
+
+    /* Button-Bar left & right to the canvas */
+    .button-bar-left-right {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        width: 60px;
+        height: 100%;
+        background-color: sandybrown;
+    }
+
+    .design-btn {
+        height: calc(35px * (244/236));
+        width: 35px;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        border: none;
+    }
+
+    #spacebar {
+        margin: 0 !important;
+        height: calc(35px * (1600/244));
+        width: 35px !important;
+        background-image: url('img/spacebar-rotated.png');
+    }
+
+    #left {
+        margin: 0 !important;
+        height: calc(35px * (244/236));
+        width: 35px;
+        background-image: url('img/cursor-left.png');
+    }
+    /* Button-Bar left & right to the canvas */
+
+
+    /* Start- & Endscreen */
+    #startscreen {
+        height: calc((100vw - (2 * 60px)) * (480/720)); /* 480/720 say how much height is available per width */
+        width: calc(100vw - (2 * 60px));
+    }
+
+    #endscreen {
+        width: calc(100vw - (2 * 59px)); /* 69px instead of 70px -> Buffer for inequal values of the canvas */
+        height: calc((100vw - (2 * 60px)) * (480/720)); /* 480/720 say how much height is available per width */
+    }
+
+    .btn-design {
+        font-size: 10px;
+        width: 100px;
+        height: 40px;
+    }
+    /* Start- & Endscreen */
+
+    /* HowtoPlay */
+    #howtoplay {
+        width: 280px;
+    }
+
+    #howtoplay div {
+        padding-left: 16px;
+    }
+
+    #howtoplay-spacebar {
+        width: 195px !important;
+    }
+    /* HowtoPlay */
+
+    /* Rotate-Info */
+    .rotate-info {
+        position: absolute;
+        top: 20px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        z-Index: 2;
+        font-size: 35px;
+        color: red;
+    }
+    /* Rotate-Info */
+}
+
+
+@media only screen and (max-width:560px) {
+
+    /* Headline */
+    h1 {
+        width: 100vw;
+        text-align: center;
+        font-size: 50px;
+    }
+    /* Headline */
+
+    /* Fullscreen */
+    #fullscreen {
+        height: calc((100vw - (2 * 60px)) * (480/720));
+        width: 100%;
+    }
+
+    #canvas {
+        width: calc(100vw - (2 * 60px));
+    }
+    /* Fullscreen */
+
+    /* Button-Bar centered on top & inside of the canvas */
+    #sound-img {
+        width: 15px;
+        padding: 2px;
+    }
+
+    #fullscreen-img {
+        width: 15px;
+        padding: 2px;
+    }
+    /* Button-Bar centered on top & inside of the canvas */
+
+    /* Button-Bar left & right to the canvas */
+    .button-bar-left-right {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        width: 60px;
+        height: 100%;
+        background-color: sandybrown;
+    }
+
+    .design-btn {
+        height: calc(30px * (244/236));
+        width: 30px;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        border: none;
+    }
+
+    #spacebar {
+        margin: 0 !important;
+        height: calc(30px * (1600/244));
+        width: 30px !important;
+        background-image: url('img/spacebar-rotated.png');
+    }
+
+    #left {
+        margin: 0 !important;
+        height: calc(30px * (244/236));
+        width: 30px;
+        background-image: url('img/cursor-left.png');
+    }
+    /* Button-Bar left & right to the canvas */
+
+
+    /* Start- & Endscreen */
+    #startscreen {
+        height: calc((100vw - (2 * 60px)) * (480/720)); /* 480/720 say how much height is available per width */
+        width: calc(100vw - (2 * 60px));
+    }
+
+    #endscreen {
+        width: calc(100vw - (2 * 59px)); /* 69px instead of 70px -> Buffer for inequal values of the canvas */
+        height: calc((100vw - (2 * 60px)) * (480/720)); /* 480/720 say how much height is available per width */
+    }
+
+    .btn-design {
+        font-size: 10px;
+        width: 100px;
+        height: 40px;
+    }
+    /* Start- & Endscreen */
+
+    /* HowtoPlay */
+    #howtoplay {
+        width: 280px;
+    }
+
+    #howtoplay div {
+        padding-left: 16px;
+    }
+
+    #howtoplay-spacebar {
+        width: 195px !important;
+    }
+    /* HowtoPlay */
+
+    /* Rotate-Info */
+    .rotate-info {
+        position: absolute;
+        top: 20px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        z-Index: 2;
+        font-size: 35px;
+        color: red;
+    }
+    /* Rotate-Info */
+}
+
+
+@media only screen and (max-width:500px) {
+
+    /* Headline */
+    h1 {
+        width: 100vw;
+        text-align: center;
+        font-size: 50px;
+    }
+    /* Headline */
+
+    /* Fullscreen */
+    #fullscreen {
+        height: calc((100vw - (2 * 50px)) * (480/720));
+        width: 100%;
+    }
+
+    #canvas {
+        width: calc(100vw - (2 * 50px));
+    }
+    /* Fullscreen */
+
+    /* Button-Bar centered on top & inside of the canvas */
+    #sound-img {
+        width: 15px;
+        padding: 2px;
+    }
+
+    #fullscreen-img {
+        width: 15px;
+        padding: 2px;
+    }
+    /* Button-Bar centered on top & inside of the canvas */
+
+    /* Button-Bar left & right to the canvas */
+    .button-bar-left-right {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        width: 60px;
+        height: 100%;
+        background-color: sandybrown;
+    }
+
+    .design-btn {
+        height: calc(30px * (244/236));
+        width: 30px;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        border: none;
+    }
+
+    #spacebar {
+        margin: 0 !important;
+        height: calc(23px * (1600/244));
+        width: 23px !important;
+        background-image: url('img/spacebar-rotated.png');
+    }
+
+    #left {
+        margin: 0 !important;
+        height: calc(30px * (244/236));
+        width: 30px;
+        background-image: url('img/cursor-left.png');
+    }
+
+    .description-flex {
+        display: none;
+        justify-content: center;
+        align-items: center;
+    }
+    /* Button-Bar left & right to the canvas */
+
+    /* Start- & Endscreen */
+    #startscreen {
+        height: calc((100vw - (2 * 50px)) * (480/720)); /* 480/720 say how much height is available per width */
+        width: calc(100vw - (2 * 50px));
+    }
+
+    #endscreen {
+        width: calc(100vw - (2 * 49px)); /* 69px instead of 70px -> Buffer for inequal values of the canvas */
+        height: calc((100vw - (2 * 50px)) * (480/720)); /* 480/720 say how much height is available per width */
+    }
+
+    .btn-design {
+        font-size: 10px;
+        width: 100px;
+        height: 40px;
+    }
+    /* Start- & Endscreen */
+
+    /* HowtoPlay */
+    #howtoplay {
+        width: 280px;
+    }
+
+    #howtoplay div {
+        padding-left: 16px;
+    }
+
+    #howtoplay-spacebar {
+        width: 195px !important;
+    }
+    /* HowtoPlay */
+
+    /* Rotate-Info */
+    .rotate-info {
+        position: absolute;
+        top: 10px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        z-Index: 2;
+        font-size: 25px;
+        color: red;
+    }
+    /* Rotate-Info */
+}
+
+
+
+@media only screen and (max-width:400px) {
+
+    /* Headline */
+    h1 {
+        width: 100vw;
+        text-align: center;
+        font-size: 50px;
+    }
+    /* Headline */
+
+    /* Fullscreen */
+    #fullscreen {
+        height: calc((100vw - (2 * 50px)) * (480/720));
+        width: 100%;
+    }
+
+    #canvas {
+        width: calc(100vw - (2 * 50px));
+    }
+    /* Fullscreen */
+
+    /* Button-Bar centered on top & inside of the canvas */
+    #sound-img {
+        width: 15px;
+        padding: 2px;
+    }
+
+    #fullscreen-img {
+        width: 15px;
+        padding: 2px;
+    }
+    /* Button-Bar centered on top & inside of the canvas */
+
+    /* Button-Bar left & right to the canvas */
+    .button-bar-left-right {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        width: 60px;
+        height: 100%;
+        background-color: sandybrown;
+    }
+
+    .design-btn {
+        height: calc(25px * (244/236));
+        width: 25px;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        border: none;
+    }
+
+    #spacebar {
+        margin: 0 !important;
+        height: calc(20px * (1600/244));
+        width: 20px !important;
+        background-image: url('img/spacebar-rotated.png');
+    }
+
+    #left {
+        margin: 0 !important;
+        height: calc(25px * (244/236));
+        width: 25px;
+        background-image: url('img/cursor-left.png');
+    }
+
+    .description-flex {
+        display: none;
+        justify-content: center;
+        align-items: center;
+    }
+    /* Button-Bar left & right to the canvas */
+
+    /* Start- & Endscreen */
+    #startscreen {
+        height: calc((100vw - (2 * 50px)) * (480/720)); /* 480/720 say how much height is available per width */
+        width: calc(100vw - (2 * 50px));
+    }
+
+    #endscreen {
+        width: calc(100vw - (2 * 49px)); /* 69px instead of 70px -> Buffer for inequal values of the canvas */
+        height: calc((100vw - (2 * 50px)) * (480/720)); /* 480/720 say how much height is available per width */
+    }
+
+    .btn-design {
+        font-size: 10px;
+        width: 90px;
+        height: 30px;
+    }
+    /* Start- & Endscreen */
+
+    /* HowtoPlay */
+    #howtoplay {
+        width: 280px;
+    }
+
+    #howtoplay div {
+        padding-left: 16px;
+    }
+
+    #howtoplay-spacebar {
+        width: 195px !important;
+    }
+    /* HowtoPlay */
+
+    /* Rotate-Info */
+    .rotate-info {
+        position: absolute;
+        top: 5px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        z-Index: 2;
+        font-size: 20px;
+        color: red;
+    }
+    /* Rotate-Info */
+}
+
+
+@media only screen and (max-width:330px) {
+
+    /* Headline */
+    h1 {
+        width: 100vw;
+        text-align: center;
+        font-size: 50px;
+    }
+    /* Headline */
+
+    /* Fullscreen */
+    #fullscreen {
+        height: calc((100vw - (2 * 40px)) * (480/720));
+        width: 100%;
+    }
+
+    #canvas {
+        width: calc(100vw - (2 * 40px));
+    }
+    /* Fullscreen */
+
+    /* Button-Bar centered on top & inside of the canvas */
+    #sound-img {
+        width: 15px;
+        padding: 2px;
+    }
+
+    #fullscreen-img {
+        width: 15px;
+        padding: 2px;
+    }
+    /* Button-Bar centered on top & inside of the canvas */
+
+    /* Button-Bar left & right to the canvas */
+    .button-bar-left-right {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        width: 60px;
+        height: 100%;
+        background-color: sandybrown;
+    }
+
+    .design-btn {
+        height: calc(20px * (244/236));
+        width: 20px;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        border: none;
+    }
+
+    #spacebar {
+        margin: 0 !important;
+        height: calc(16px * (1600/244));
+        width: 16px !important;
+        background-image: url('img/spacebar-rotated.png');
+    }
+
+    #left {
+        margin: 0 !important;
+        height: calc(20px * (244/236));
+        width: 20px;
+        background-image: url('img/cursor-left.png');
+    }
+
+    .description-flex {
+        display: none;
+        justify-content: center;
+        align-items: center;
+    }
+    /* Button-Bar left & right to the canvas */
+
+
+    /* Start- & Endscreen */
+    #startscreen {
+        height: calc((100vw - (2 * 40px)) * (480/720)); /* 480/720 say how much height is available per width */
+        width: calc(100vw - (2 * 40px));
+    }
+
+    #endscreen {
+        width: calc(100vw - (2 * 39px)); /* 69px instead of 70px -> Buffer for inequal values of the canvas */
+        height: calc((100vw - (2 * 40px)) * (480/720)); /* 480/720 say how much height is available per width */
+    }
+
+    .btn-design {
+        font-size: 10px;
+        width: 90px;
+        height: 30px;
+    }
+    /* Start- & Endscreen */
+
+    /* HowtoPlay */
+    #howtoplay {
+        width: 280px;
+    }
+
+    #howtoplay div {
+        padding-left: 16px;
+    }
+
+    #howtoplay-spacebar {
+        width: 195px !important;
+    }
+    /* HowtoPlay */
+
+    /* Rotate-Info */
+    .rotate-info {
+        position: absolute;
+        top: 2px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        z-Index: 2;
+        font-size: 15px;
+        color: red;
+    }
+    /* Rotate-Info */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Mobile: applied, when Browser-Window-height smaller or equal 540px because of the PopUp */
+@media only screen and (max-height:540px) and (orientation:landscape) {
+
+    /* Headline */
+    h1 {
+        display: none;
+        /* Hides title, when handy gets rotated */
+    }
+
+    /* Headline */
+
+    /* Fullscreen */
+    #fullscreen {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    #canvas {
+        width: 80vw;
+        height: 100%;
+    }
+
+    /* Fullscreen */
+
+    /* Button-Bar centered on top & inside of the canvas */
+    #button-bar {
+        top: 1vh;
+    }
+
+    #sound-img,
+    #fullscreen-img {
+        width: 16px;
+        height: 16px;
+    }
+
+    /* Button-Bar centered on top & inside of the canvas */
+
+    /* Button-Bar left & right to the canvas */
+    .button-bar-left-right {
+        height: 100%;
+        width: 10vw;
+    }
+
+    #button-bar-left {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    #button-bar-right {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    .design-btn {
+        background-size: 100% 100%;
+    }
+
+    /* Button-Bar left & right to the canvas */
+
+    /* Start- & Endscreen */
+    #startscreen {
+        width: 80vw;
+        height: 100vh;
+    }
+
+    #endscreen {
+        position: absolute;
+        top: 0;
+        width: 80vw;
+        height: 100vh;
+        background-image: url('img/9_intro_outro_screens/game_over/game over.png');
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+    }
+
+    .btn-design {
+        font-size: 10px;
+        width: 100px;
+        height: 40px;
+    }
+
+    /* Start- & Endscreen */
+
+    /* HowtoPlay */
+    #howtoplay {
+        position: absolute;
+        display: none;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        width: 400px;
+        height: 100vh;
+        border-radius: 10px;
+        background-color: sandybrown;
+        z-Index: 3;
+    }
+
+    #howtoplay div {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        padding-left: 80px;
+        padding-bottom: 5px;
+    }
+
+    .icons-howtoplay {
+        height: 30px;
+        width: 25px;
+        padding-right: 10px;
+    }
+
+    .icons-howtoplay2 {
+        transform: translateY(-6px);
+        height: 30px;
+        width: 25px;
+    }
+
+    #howtoplay-spacebar {
+        width: 250px !important;
+    }
+
+    #exit {
+        position: absolute;
+        padding: 10px;
+        top: 0;
+        right: 0;
+        cursor: pointer;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    h3 {
+        margin: 0;
+    }
+
+    /* HowtoPlay */
+
+    /* Rotate-Info */
+    .rotate-info {
+        position: absolute;
+        top: 2px;
+        display: none;
+        align-items: flex-start;
+        justify-content: center;
+        z-Index: 2;
+        font-size: 15px;
+        color: green;
+    }
+
+    /* Rotate-Info */
+}
